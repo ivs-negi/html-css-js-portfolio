@@ -1,0 +1,388 @@
+/* =============================================================
+   MEDIAQUERIES.CSS — Mobile Responsive (2026 Standards)
+   
+   Breakpoints:
+   1. Large Devices     : max-width 1400px
+   2. Tablets           : max-width 1200px
+   3. Mobile            : max-width 768px
+   4. Small Mobile      : max-width 480px
+
+   Modern techniques used:
+   - clamp() for fluid typography
+   - dvh (dynamic viewport height) for mobile browsers
+   - prefers-reduced-motion for accessibility
+   - min() for fluid spacing
+   - touch-action for better mobile UX
+   ============================================================= */
+
+/* =============================================================
+   1. LARGE DEVICES (≤ 1400px)
+   ============================================================= */
+
+@media screen and (max-width: 1400px) {
+  #profile {
+    height: auto;
+    margin-bottom: 6rem;
+  }
+
+  .about-containers {
+    flex-wrap: wrap;
+  }
+
+  section {
+    height: auto;
+  }
+}
+
+/* =============================================================
+   2. TABLETS (≤ 1200px)
+   ============================================================= */
+
+@media screen and (max-width: 1200px) {
+  /* NAVIGATION */
+  #desktop-nav {
+    display: none;
+  }
+
+  #hamburger-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 10dvh; /* dvh: accounts for mobile browser chrome */
+    min-height: 64px; /* minimum touch-safe height */
+    position: sticky; /* stays visible on scroll */
+    top: 0;
+    background: white;
+    z-index: 1000;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  /* GENERAL */
+  section {
+    margin: 0 5%;
+    height: auto;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+  }
+
+  .section-container {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    gap: 2rem;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  /* PROFILE */
+  #profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    gap: 2rem;
+    padding: 4vh 0;
+  }
+
+  /* Fluid title: scales smoothly between breakpoints */
+  .title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+  }
+
+  .section__text__p2 {
+    font-size: clamp(1.1rem, 2.5vw, 1.75rem);
+  }
+
+  .section__pic-container {
+    width: clamp(220px, 40vw, 320px);
+    height: clamp(220px, 40vw, 320px);
+    margin: 0 auto;
+  }
+
+  .profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ABOUT */
+  .about-containers {
+    justify-content: center;
+  }
+
+  .about__pic-container {
+    width: clamp(220px, 40vw, 300px);
+    height: clamp(220px, 40vw, 300px);
+  }
+
+  /* SKILLS */
+  .experience-details-container {
+    margin-top: 2rem;
+  }
+
+  /* BUTTONS — ensure minimum 44px touch target (Apple/Google standard) */
+  .btn {
+    min-height: 44px;
+    touch-action: manipulation; /* removes 300ms tap delay */
+  }
+}
+
+/* =============================================================
+   3. MOBILE (≤ 768px)
+   ============================================================= */
+
+@media screen and (max-width: 768px) {
+  /* NAVIGATION */
+  #hamburger-nav {
+    height: 64px;
+    padding: 0 1.2rem;
+  }
+
+  .logo {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+  }
+
+  /* Full-width dropdown for better mobile UX */
+  .menu-links {
+    position: fixed; /* fixed so it overlays entire screen */
+    top: 64px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .menu-links a {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    /* Minimum touch target height */
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  /* GENERAL */
+  section {
+    margin: 0 1.2rem;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    height: auto;
+  }
+
+  /* PROFILE */
+  #profile {
+    min-height: 90dvh; /* dvh handles mobile browser bottom bar correctly */
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 3vh 0;
+    margin-bottom: 0;
+  }
+
+  .section__pic-container {
+    width: clamp(180px, 55vw, 240px);
+    height: clamp(180px, 55vw, 240px);
+    border-radius: 50%; /* circle on mobile */
+  }
+
+  /* TYPOGRAPHY — fluid scaling */
+  .title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .section__text__p1 {
+    font-size: clamp(0.85rem, 3vw, 1rem);
+  }
+
+  .section__text__p2 {
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
+  }
+
+  .text-container {
+    text-align: center;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    line-height: 1.7;
+  }
+
+  /* BUTTONS — full-width stacked, touch friendly */
+  .btn-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    width: min(100%, 260px); /* min() — never wider than screen */
+    min-height: 48px; /* larger touch target on mobile */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  /* ABOUT */
+  #about .title {
+    margin-bottom: 2rem; /* extra gap between about image and title */
+  }
+
+  .about__pic-container {
+    width: 160px; /* fixed small square */
+    height: 160px;
+    border-radius: 2rem; /* rounded square as requested */
+  }
+
+  .about-containers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .details-container {
+    width: 100%;
+  }
+
+  /* SKILLS */
+  .experience-sub-title {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    text-align: center;
+  }
+
+  .article-container {
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  article {
+    width: clamp(7rem, 40%, 10rem);
+    justify-content: flex-start;
+  }
+
+  /* PROJECTS — stack cards vertically */
+  .about-containers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .details-container.color-container {
+    width: 100%;
+  }
+
+  .project-img {
+    width: 100%;
+    height: auto; /* let image scale naturally */
+    aspect-ratio: 16 / 9; /* modern way to maintain ratio */
+    object-fit: cover;
+  }
+
+  /* CONTACT */
+  #contact {
+    height: auto;
+    min-height: 50dvh;
+  }
+
+  .contact-info-upper-container {
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 400px);
+    padding: 1rem;
+    gap: 0.5rem;
+    margin: 1.5rem auto;
+  }
+
+  .contact-info-container {
+    flex-direction: row;
+    margin: 0.5rem 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-info-container p {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  /* FOOTER */
+  footer {
+    height: auto;
+    padding: 2rem 1rem;
+  }
+
+  footer nav {
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* =============================================================
+   4. SMALL MOBILE (≤ 480px)
+   ============================================================= */
+
+@media screen and (max-width: 480px) {
+  section {
+    margin: 0 0.8rem;
+  }
+
+  #hamburger-nav {
+    padding: 0 0.8rem;
+  }
+
+  .section__pic-container {
+    width: clamp(150px, 60vw, 200px);
+    height: clamp(150px, 60vw, 200px);
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 7vw, 1.8rem);
+  }
+
+  .about__pic-container {
+    width: clamp(150px, 60vw, 200px);
+    height: clamp(150px, 60vw, 200px);
+  }
+
+  /* Skills: single column on very small phones */
+  .article-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1rem;
+    gap: 0.75rem;
+  }
+
+  article {
+    width: 100%;
+  }
+
+  .contact-info-upper-container {
+    border-radius: 1rem;
+    padding: 0.75rem;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* =============================================================
+   5. ACCESSIBILITY — Respect user motion preferences
+   ============================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
